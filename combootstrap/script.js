@@ -129,7 +129,7 @@ function exibirCards() {
 
         cardsRow.insertAdjacentHTML("beforeend", cardHtml);
     });
-}
+}   
 
 // Chama a função para exibir as informações dos cards ao carregar a página
 exibirCards();
