@@ -96,40 +96,53 @@ const cardsInfo = [
         currentPrice: "27,81"
     }
 ];
+document.addEventListener("DOMContentLoaded", function () {
+    // Função para exibir as informações dos cards no HTML
+    function exibirCards() {
+        const cardsRow = document.querySelector(".row"); // Selecionar a classe .row
 
-// Função para exibir as informações dos cards no HTML
-function exibirCards() {
-    const cardsRow = document.querySelector(".row"); // Selecionar a classe .row
+        cardsInfo.forEach((card, index) => {
+            const cardHtml = `
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="${card.imageSrc}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${card.title}</h5>
+                            <p class="card-price"> <del>DE:${card.originalPrice}</del><br>R$${card.currentPrice}</p>
 
-    cardsInfo.forEach(card => {
-        const cardHtml = `
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="${card.imageSrc}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${card.title}</h5>
-                        <p class="card-price"> <del>DE:${card.originalPrice}</del><br>R$${card.currentPrice}</p>
-
-                        <div class="cart-area">
-                            <div class="cart-buttons">
-                                <div class="quantity">
-                                    <p>Qtd:</p>
+                            <div class="cart-area">
+                                <div class="cart-buttons">
+                                    <div class="quantity">
+                                        <p>Qtd:</p>
+                                    </div>
+                                    <button class="btn btn-cart">+</button>
+                                    <button class="btn btn-cart quantity-button">0</button>
+                                    <button class="btn btn-cart">-</button>
                                 </div>
-                                <button class="btn btn-cart">+</button>
-                                <button class="btn btn-cart">0</button>
-                                <button class="btn btn-cart">-</button>
+                                <button class="btn btn-pink add-to-cart-button" data-index="${index}">Adicionar</button>
+                                <button class="btn btn-black">Comprar agora</button>
                             </div>
-                            <button class="btn btn-pink">Adicionar</button>
-                            <button class="btn btn-black">Comprar agora</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
 
-        cardsRow.insertAdjacentHTML("beforeend", cardHtml);
-    });
-}   
+            cardsRow.insertAdjacentHTML("beforeend", cardHtml);
+        });
 
-// Chama a função para exibir as informações dos cards ao carregar a página
-exibirCards();
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
+        addToCartButtons.forEach(button => {
+            button.addEventListener("click", function (event) {
+                const clickedIndex = event.target.getAttribute("data-index");
+                const clickedCard = cardsInfo[clickedIndex];
+
+                console.log("Medicamento adicionado:", clickedCard.title);
+                console.log("Lista de medicamentos:", cardsInfo);
+
+                alert(`${clickedCard.title} foi adicionado ao carrinho!`);
+            });
+        });
+    }
+
+    exibirCards();
+});
