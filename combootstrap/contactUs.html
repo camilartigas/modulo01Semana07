@@ -76,7 +76,7 @@
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary" id="btnEnviar">Enviar</button>
       </form>
     </div>
     
@@ -190,6 +190,29 @@
         });
     });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form"); // Seletor do formulário
+        const btnEnviar = document.getElementById("btnEnviar");
+        
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            
+            const inputName = document.getElementById("inputName");
+            const inputSobrenome = document.getElementById("inputSobrenome");
+            
+            const nomeCompleto = inputName.value + " " + inputSobrenome.value;
+            console.log("Nome da pessoa que enviou: " + nomeCompleto);
+    
+            // Exibir um alerta
+            alert("Mensagem enviada com sucesso!");
+    
+            // Você pode adicionar aqui um redirecionamento para uma página de confirmação, por exemplo.
+        });
+    });
+    </script>
+    
     
 
     
