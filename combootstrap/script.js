@@ -146,3 +146,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     exibirCards();
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const modoEscuroBtn = document.getElementById("modoEscuroBtn");
+
+    modoEscuroBtn.addEventListener("click", function() {
+        document.body.classList.toggle("bg-dark");
+        document.body.classList.toggle("text-white");
+
+        // Altera a classe dos botões e links para o modo escuro
+        const buttonsAndLinks = document.querySelectorAll(".btn, .nav-link");
+        buttonsAndLinks.forEach(function(element) {
+            element.classList.toggle("btn-dark");
+            element.classList.toggle("text-white");
+        });
+    });
+});
+
